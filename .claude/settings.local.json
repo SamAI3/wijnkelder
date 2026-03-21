@@ -3,7 +3,13 @@
     "allow": [
       "Bash(npm install:*)",
       "Bash(npx tsc:*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(python3 -c \"import cairosvg\")",
+      "Bash(python3 -c \"from PIL import Image; print\\(''pillow ok''\\)\")",
+      "Bash(sips:*)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(git push:*)"
     ]
   }
 }

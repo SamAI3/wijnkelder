@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Wine glass bowl -->
+  <path d="M 30 10 L 70 10 Q 72 10 72 13 Q 68 38 62 48 Q 57 55 50 57 Q 43 55 38 48 Q 32 38 28 13 Q 28 10 30 10 Z"
+        fill="white"/>
+  <!-- Wine glass stem -->
+  <rect x="47" y="57" width="6" height="22" fill="white" rx="1"/>
+  <!-- Wine glass base -->
+  <rect x="33" y="79" width="34" height="6" fill="white" rx="3"/>
+  <!-- Subtle wine fill (semi-transparent pink) -->
+  <path d="M 34 28 Q 32 38 38 48 Q 43 55 50 57 Q 57 55 62 48 Q 68 38 66 28 Z"
+        fill="rgba(180,30,60,0.35)"/>
+</svg>

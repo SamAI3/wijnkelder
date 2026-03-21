@@ -1,0 +1,18 @@
+{
+  "name": "Onze Wijnkelder",
+  "short_name": "Wijnkelder",
+  "description": "Beheer en ontdek jouw wijnkelder",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "theme_color": "#8B1A2F",
+  "background_color": "#FAF8F5",
+  "icons": [
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
