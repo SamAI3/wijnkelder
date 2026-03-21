@@ -71,7 +71,6 @@ function WijnChips({ wijn, licht }: { wijn: Wijn; licht?: boolean }) {
     wijn.kleur,
     String(wijn.jaartal),
     `€${wijn.prijs.toFixed(2)}`,
-    ...wijn.druivensoorten,
     ...eigenaren,
   ]
 
@@ -101,7 +100,7 @@ function AdviesWeergave({ advies, wijnen }: { advies: WijnAdvies; wijnen: Wijn[]
           Topkeuze
         </div>
         <div style={{ fontSize: '1.1rem', fontWeight: 700, marginBottom: '8px', lineHeight: 1.3 }}>
-          {advies.topkeuze.naam}
+          {advies.topkeuze.naam.replace(/\s*\(.*?\)\s*$/, '')}
         </div>
         <div style={{ fontSize: '0.9rem', lineHeight: 1.6, opacity: 0.9 }}>
           {advies.topkeuze.onderbouwing}
@@ -124,7 +123,7 @@ function AdviesWeergave({ advies, wijnen }: { advies: WijnAdvies; wijnen: Wijn[]
                   border: '1px solid #f0ebe7', boxShadow: '0 1px 3px rgba(0,0,0,0.05)',
                 }}>
                   <div style={{ fontSize: '0.92rem', fontWeight: 700, color: '#1a1a1a', marginBottom: '4px' }}>
-                    {alt.naam}
+                    {alt.naam.replace(/\s*\(.*?\)\s*$/, '')}
                   </div>
                   <div style={{ fontSize: '0.85rem', color: '#6b7280', lineHeight: 1.5 }}>
                     {alt.onderbouwing}

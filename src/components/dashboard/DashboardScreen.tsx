@@ -216,23 +216,24 @@ export function DashboardScreen({ wijnen }: Props) {
         <div style={{ background: 'white', borderRadius: '12px', padding: '16px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '0.95rem', fontWeight: 700 }}>Top druivensoorten</h3>
           {topDruiven.map(([druif, count]) => (
-            <BalBalk key={druif} label={druif} count={count} max={maxDruif} kleur="#c2410c" />
+            <BalBalk key={druif} label={druif} count={count} max={maxDruif} kleur="#8B1A2F" />
           ))}
         </div>
 
         {/* Eigenaarschap */}
         <div style={{ background: 'white', borderRadius: '12px', padding: '16px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '0.95rem', fontWeight: 700 }}>Eigenaarschap</h3>
-          {Object.entries(stats.eigenaarVerdeling).map(([naam, count]) => (
-            <BalBalk key={naam} label={naam} count={count} max={totaalEigenaar} kleur="#7c3aed" showPct />
-          ))}
+          {Object.entries(stats.eigenaarVerdeling).map(([naam, count]) => {
+            const eigenaarKleur = naam === 'Samen' ? '#8B1A2F' : naam === 'Sam' ? '#c0394f' : '#e8a0b0'
+            return <BalBalk key={naam} label={naam} count={count} max={totaalEigenaar} kleur={eigenaarKleur} showPct />
+          })}
         </div>
 
         {/* Prijsverdeling */}
         <div style={{ background: 'white', borderRadius: '12px', padding: '16px', boxShadow: '0 1px 4px rgba(0,0,0,0.06)' }}>
           <h3 style={{ margin: '0 0 14px', fontSize: '0.95rem', fontWeight: 700 }}>Prijsverdeling</h3>
           {Object.entries(stats.prijsCategorien).map(([cat, count]) => (
-            <BalBalk key={cat} label={cat} count={count} max={Math.max(...Object.values(stats.prijsCategorien), 1)} kleur="#0284c7" />
+            <BalBalk key={cat} label={cat} count={count} max={Math.max(...Object.values(stats.prijsCategorien), 1)} kleur="#8B1A2F" />
           ))}
         </div>
 
@@ -242,12 +243,12 @@ export function DashboardScreen({ wijnen }: Props) {
             <h3 style={{ margin: '0 0 14px', fontSize: '0.95rem', fontWeight: 700 }}>Uitschieters</h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
               <div style={{ background: '#fdf2f4', borderRadius: '10px', padding: '12px' }}>
-                <div style={{ fontSize: '0.72rem', color: '#8B1A2F', fontWeight: 600, marginBottom: '4px' }}>DUURSTE</div>
+                <div style={{ fontSize: '0.7rem', color: '#8B1A2F', fontWeight: 600, marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Duurste</div>
                 <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1a1a1a', lineHeight: 1.3 }}>{stats.duurste.naam}</div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#8B1A2F', marginTop: '4px' }}>€{stats.duurste.prijs.toFixed(2)}</div>
               </div>
               <div style={{ background: '#f0fdf4', borderRadius: '10px', padding: '12px' }}>
-                <div style={{ fontSize: '0.72rem', color: '#166534', fontWeight: 600, marginBottom: '4px' }}>GOEDKOOPSTE</div>
+                <div style={{ fontSize: '0.7rem', color: '#166534', fontWeight: 600, marginBottom: '4px', textTransform: 'uppercase', letterSpacing: '1px' }}>Goedkoopste</div>
                 <div style={{ fontSize: '0.88rem', fontWeight: 700, color: '#1a1a1a', lineHeight: 1.3 }}>{stats.goedkoopste.naam}</div>
                 <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#166534', marginTop: '4px' }}>€{stats.goedkoopste.prijs.toFixed(2)}</div>
               </div>

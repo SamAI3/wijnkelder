@@ -10,6 +10,13 @@ const kleurBadge: Record<string, { bg: string; color: string }> = {
   'Oranje': { bg: '#ffedd5', color: '#c2410c' },
 }
 
+const kleurBorder: Record<string, string> = {
+  'Rood': '#8B1A2F',
+  'Wit': '#854d0e',
+  'Rosé': '#9d174d',
+  'Oranje': '#c2410c',
+}
+
 interface Props {
   wijn: Wijn
   wijnhuis?: Wijnhuis
@@ -21,6 +28,7 @@ interface Props {
 export function WijnKaart({ wijn, wijnhuis: wijnhuisObj, onDetail, onEdit, onWijnhuisClick }: Props) {
   const status = getBewaarStatus(wijn)
   const badge = kleurBadge[wijn.kleur] ?? { bg: '#f3f4f6', color: '#374151' }
+  const borderColor = kleurBorder[wijn.kleur] ?? '#e5e7eb'
   const totaalFlessen = wijn.flessenSamen + wijn.flessenSam + wijn.flessenRiv
 
   return (
@@ -28,8 +36,9 @@ export function WijnKaart({ wijn, wijnhuis: wijnhuisObj, onDetail, onEdit, onWij
       background: 'white',
       borderRadius: '12px',
       padding: '16px',
-      boxShadow: '0 1px 4px rgba(0,0,0,0.08)',
+      boxShadow: '0 2px 12px rgba(0,0,0,0.08)',
       border: '1px solid #f0ebe7',
+      borderLeft: `3px solid ${borderColor}`,
     }}>
       {/* Header rij */}
       <div style={{ marginBottom: '10px' }}>
@@ -113,36 +122,17 @@ export function WijnKaart({ wijn, wijnhuis: wijnhuisObj, onDetail, onEdit, onWij
       )}
 
       {/* Voorraad */}
-      <div style={{
-        display: 'flex', gap: '8px', marginBottom: '12px',
-        background: '#faf8f5', borderRadius: '8px', padding: '8px',
-      }}>
-        {wijn.flessenSamen > 0 && (
-          <div style={{ textAlign: 'center', flex: 1 }}>
-            <div style={{ fontSize: '1rem', fontWeight: 700, color: '#8B1A2F' }}>{wijn.flessenSamen}</div>
-            <div style={{ fontSize: '0.7rem', color: '#6b7280' }}>Samen</div>
-          </div>
-        )}
-        {wijn.flessenSam > 0 && (
-          <div style={{ textAlign: 'center', flex: 1 }}>
-            <div style={{ fontSize: '1rem', fontWeight: 700, color: '#8B1A2F' }}>{wijn.flessenSam}</div>
-            <div style={{ fontSize: '0.7rem', color: '#6b7280' }}>Sam</div>
-          </div>
-        )}
-        {wijn.flessenRiv > 0 && (
-          <div style={{ textAlign: 'center', flex: 1 }}>
-            <div style={{ fontSize: '1rem', fontWeight: 700, color: '#8B1A2F' }}>{wijn.flessenRiv}</div>
-            <div style={{ fontSize: '0.7rem', color: '#6b7280' }}>Riv</div>
-          </div>
-        )}
-        {totaalFlessen === 0 && (
-          <span style={{ fontSize: '0.82rem', color: '#9ca3af', flex: 1 }}>Geen flessen op voorraad</span>
-        )}
-        {totaalFlessen > 0 && (
-          <div style={{ textAlign: 'center', flex: 1, borderLeft: '1px solid #e5e7eb', marginLeft: '4px', paddingLeft: '8px' }}>
-            <div style={{ fontSize: '1rem', fontWeight: 700, color: '#374151' }}>{totaalFlessen}</div>
-            <div style={{ fontSize: '0.7rem', color: '#6b7280' }}>Totaal</div>
-          </div>
+      <div style={{ marginBottom: '12px' }}>
+        {totaalFlessen === 0 ? (
+          <span style={{ fontSize: '0.78rem', color: '#9ca3af' }}>Geen flessen op voorraad</span>
+        ) : (
+          <span style={{ fontSize: '0.78rem', color: '#9ca3af' }}>
+            {[
+              wijn.flessenSamen > 0 && `${wijn.flessenSamen} Samen`,
+              wijn.flessenSam > 0 && `${wijn.flessenSam} Sam`,
+              wijn.flessenRiv > 0 && `${wijn.flessenRiv} Riv`,
+            ].filter(Boolean).join(' · ')} · {totaalFlessen} Totaal
+          </span>
         )}
       </div>
 
@@ -157,12 +147,12 @@ export function WijnKaart({ wijn, wijnhuis: wijnhuisObj, onDetail, onEdit, onWij
           Details <ChevronRight size={14} />
         </button>
         <button onClick={onEdit} style={{
-          flex: 1, padding: '9px', border: 'none',
-          borderRadius: '8px', background: '#8B1A2F', cursor: 'pointer',
-          color: 'white', fontSize: '0.88rem', fontWeight: 600,
+          flex: 1, padding: '7px', border: '1.5px solid #8B1A2F',
+          borderRadius: '8px', background: 'white', cursor: 'pointer',
+          color: '#8B1A2F', fontSize: '0.82rem', fontWeight: 600,
           display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '4px',
         }}>
-          <Edit2 size={14} /> Bewerken
+          <Edit2 size={13} /> Bewerken
         </button>
       </div>
     </div>

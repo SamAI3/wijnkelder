@@ -93,8 +93,8 @@ export function KelderScreen({ wijnen, wijnhuizen, onWijnToevoegen, onWijnDetail
             onClick={onWijnToevoegen}
             style={{
               display: 'flex', alignItems: 'center', gap: '6px',
-              background: 'rgba(255,255,255,0.2)', border: '1.5px solid rgba(255,255,255,0.4)',
-              borderRadius: '8px', color: 'white', padding: '8px 12px',
+              background: 'white', border: '1.5px solid white',
+              borderRadius: '8px', color: '#8B1A2F', padding: '8px 12px',
               fontSize: '0.85rem', fontWeight: 600, cursor: 'pointer',
             }}
           >
