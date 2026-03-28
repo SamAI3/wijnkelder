@@ -31,3 +31,11 @@ Collectie `wijnhuizen`: naam, informatie
 - Mobiel-first
 - Geen externe chart-bibliotheken (SVG/CSS)
 - JSON responses van Anthropic API, nooit platte tekst
+
+## Beveiliging
+- Anthropic API-calls lopen via een Netlify Function proxy (netlify/functions/claude.ts)
+- De ANTHROPIC_API_KEY staat alleen server-side (geen VITE_ prefix, niet in de frontend bundle)
+- Firestore regels staan in firestore.rules — valideren veldstructuur bij schrijven
+- Firebase config (VITE_FIREBASE_*) is by design publiek, dit is acceptabel
+- Lokaal testen van de proxy: gebruik `netlify dev` in plaats van `npm run dev`
+- Bij nieuwe Anthropic API-calls: altijd via de callClaude() functie in src/utils/anthropic.ts, nooit rechtstreeks naar api.anthropic.com
