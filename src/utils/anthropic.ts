@@ -1,29 +1,16 @@
-const API_KEY = import.meta.env.VITE_ANTHROPIC_API_KEY
-const MODEL = 'claude-sonnet-4-20250514'
-
 async function callClaude(messages: { role: string; content: unknown }[], systemPrompt?: string): Promise<string> {
-  const body: Record<string, unknown> = {
-    model: MODEL,
-    max_tokens: 1024,
-    messages,
-  }
+  const body: Record<string, unknown> = { messages }
   if (systemPrompt) body.system = systemPrompt
 
-  const res = await fetch('https://api.anthropic.com/v1/messages', {
+  const res = await fetch('/.netlify/functions/claude', {
     method: 'POST',
-    headers: {
-      'x-api-key': API_KEY,
-      'anthropic-version': '2023-06-01',
-      'content-type': 'application/json',
-      'anthropic-dangerous-allow-browser': 'true',
-      'anthropic-dangerous-direct-browser-access': 'true',
-    },
+    headers: { 'content-type': 'application/json' },
     body: JSON.stringify(body),
   })
 
   if (!res.ok) {
     const err = await res.text()
-    throw new Error(`Anthropic API fout: ${res.status} ${err}`)
+    throw new Error(`API fout: ${res.status} ${err}`)
   }
 
   const data = await res.json()

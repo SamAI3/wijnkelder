@@ -9,7 +9,9 @@
       "Bash(sips:*)",
       "Bash(git add:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(find /Users/samhubert/Projecten/wijnkelder -type f -name netlify.toml -o -name firestore.rules -o -name package.json -o -name .env*)",
+      "Bash(find /Users/samhubert/Projecten/wijnkelder -maxdepth 2 -type d -not -path */node_modules* -not -path */dist/* -not -path */.git*)"
     ]
   }
 }
